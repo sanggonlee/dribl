@@ -1,0 +1,4 @@
+properties:
+  - totalMem
+  - freeMem
+  - uptime

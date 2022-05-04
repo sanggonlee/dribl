@@ -1,12 +1,14 @@
 import express from 'express';
+import bodyparser from 'body-parser';
 import REST from './app/src/rest/REST';
 import ConfigManager from './app/src/ConfigManager';
-import SystemInfoManager from './app/src/SystemInfoManager';
+import SystemManager from './app/src/SystemManager';
 
 ConfigManager.init('./app/configs');
-SystemInfoManager.init();
+SystemManager.init();
 
 const app = express();
+app.use(bodyparser.json());
 new REST(app);
 
 app.listen(3000, () => {

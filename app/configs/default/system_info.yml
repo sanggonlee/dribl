@@ -2,6 +2,3 @@ properties:
   - arch
   - platform
   - numCPUs
-  - totalMem
-  - freeMem
-  - uptime
