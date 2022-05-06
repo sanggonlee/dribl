@@ -8,14 +8,13 @@ export default class SystemMetricsEndpoint extends Endpoint {
   }
 
   post(req: express.Request, res: express.Response): void {
-    console.log({ req });
     const interval = req.body.interval;
     SystemManager.instance().startSystemMetrics(interval);
     res.status(200).send({ status: 'Success' });
   }
 
-  get(req: express.Request, res: express.Response): void {
-    const systemMetrics = SystemManager.instance().getSystemMetrics();
+  async get(req: express.Request, res: express.Response): Promise<void> {
+    const systemMetrics = await SystemManager.instance().getSystemMetrics();
     res.status(200).send(systemMetrics);
   }
 }

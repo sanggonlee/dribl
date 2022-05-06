@@ -7,8 +7,9 @@ export default class SystemInfoEndpoint extends Endpoint {
     super(app, '/system/info');
   }
 
-  get(req: express.Request, res: express.Response): void {
-    const systemInfo = SystemManager.instance().getSystemInfo();
+  async get(req: express.Request, res: express.Response): Promise<void> {
+    const properties = ((req.query.properties ?? '') as string).split(',');
+    const systemInfo = await SystemManager.instance().getSystemInfo(properties);
     res.status(200).send(systemInfo);
   }
 }

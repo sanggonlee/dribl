@@ -3,13 +3,18 @@ import express from 'express';
 export default abstract class Endpoint {
   protected route: express.Application;
 
-  constructor(app: express.Application, path: string) {
+  constructor(
+    app: express.Application,
+    path: string,
+    ...middlewares: express.Handler[]
+  ) {
     this.route = express();
     this.route.get('/', this.get.bind(this));
     this.route.post('/', this.post.bind(this));
     this.route.patch('/', this.update.bind(this));
     this.route.delete('/', this.delete.bind(this));
 
+    middlewares.forEach((m) => this.route.use(m));
     app.use(path, this.route);
   }
 

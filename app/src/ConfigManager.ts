@@ -20,10 +20,11 @@ export default class ConfigManager {
     this.copyDefaultConfigs();
   }
 
-  public getConfigs<T>(name: string): T {
-    return YAML.parse(
-      fs.readFileSync(join(this.getConfigStoreDir(), `${name}.yml`)).toString()
+  public async getConfigs<T>(name: string): Promise<T> {
+    const file = await fs.promises.readFile(
+      join(this.getConfigStoreDir(), `${name}.yml`)
     );
+    return YAML.parse(file.toString());
   }
 
   private copyDefaultConfigs(): void {

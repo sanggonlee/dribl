@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyparser from 'body-parser';
-import REST from './app/src/rest/REST';
+import Routes from './app/src/rest/Routes';
 import ConfigManager from './app/src/ConfigManager';
 import SystemManager from './app/src/SystemManager';
 
@@ -9,7 +9,8 @@ SystemManager.init();
 
 const app = express();
 app.use(bodyparser.json());
-new REST(app);
+
+new Routes(app);
 
 app.listen(3000, () => {
   console.log('The application is listening on port 3000!');

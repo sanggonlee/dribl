@@ -7,7 +7,8 @@ It simulates the real life software development, giving you opportunity to work 
 It's assumed you have:
 
 - basic programming skills in at least one language (if you're absolutely new to development, please learn the basics first)
-- basic understanding of backend development
+- basic understanding of HTTP server
+- basic understanding of REST
 
 It's NOT assumed you have:
 
@@ -23,7 +24,4 @@ You could start a new toy project on your own, but the initial project setup is 
 
 ## Tasks
 
-The following are all independent tasks, so they can be worked on in any order. They are however, in increasing order of difficulty.
-
-1. [Fix typo](https://github.com/sanggonlee/dribl/blob/main/tasks/01_Fix_typo.md)
-2.
+[The list of tasks](https://github.com/sanggonlee/dribl/blob/master/docs/TASKS.md)

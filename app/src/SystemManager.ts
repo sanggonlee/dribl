@@ -29,15 +29,22 @@ export default class SystemManager {
   private static INSTANCE: SystemManager;
   private systemMetricsJob: SystemMetricsJob;
 
-  public getSystemInfo(): SystemInfo {
-    const systemInfoConfigs =
-      ConfigManager.instance().getConfigs<SystemInfoConfigs>('system_info');
-    return this.computeSystemInfo(systemInfoConfigs.properties);
+  public async getSystemInfo(properties?: string[]): Promise<SystemInfo> {
+    if (!properties) {
+      const systemInfoConfigs =
+        await ConfigManager.instance().getConfigs<SystemInfoConfigs>(
+          'system_info'
+        );
+      let properties = systemInfoConfigs.properties;
+    }
+    return this.computeSystemInfo(properties ?? []);
   }
 
-  public getSystemMetrics(): SystemMetrics {
+  public async getSystemMetrics(): Promise<SystemMetrics> {
     const systemMetricsConfigs =
-      ConfigManager.instance().getConfigs<SystemInfoConfigs>('system_metrics');
+      await ConfigManager.instance().getConfigs<SystemInfoConfigs>(
+        'system_metrics'
+      );
     return this.computeSystemMetrics(systemMetricsConfigs.properties);
   }
 
